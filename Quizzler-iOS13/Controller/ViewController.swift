@@ -13,8 +13,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var choice1: UIButton!
+    @IBOutlet weak var choice2: UIButton!
+    @IBOutlet weak var choice3: UIButton!
+    
+    
     @IBOutlet weak var progressView: UIProgressView!
     
     var quizBrain = QuizBrain()
@@ -23,7 +26,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         updateUI()
     }
     
@@ -34,7 +36,6 @@ class ViewController: UIViewController {
             sender.backgroundColor = UIColor.green
         } else {
             sender.backgroundColor = UIColor.red
-            
         }
          
         quizBrain.nextQuestion()
@@ -44,14 +45,19 @@ class ViewController: UIViewController {
     
     @objc func updateUI() {
         
-      questionLabel.text = quizBrain.getQuestionText()
         
+        questionLabel.text = quizBrain.getQuestionText()
         progressView.progress = quizBrain.getProgress()
+        
+        choice1.setTitle(quizBrain.getQuestionOptions()[0], for: .normal)
+        choice2.setTitle(quizBrain.getQuestionOptions()[1], for: .normal)
+        choice3.setTitle(quizBrain.getQuestionOptions()[2], for: .normal)
         
         scoreLabel.text = "Score: \(quizBrain.getScore())"
         print("Timer is working")
-        trueButton.backgroundColor = UIColor.clear
-        falseButton.backgroundColor = UIColor.clear
+        choice1.backgroundColor = UIColor.clear
+        choice2.backgroundColor = UIColor.clear
+        choice3.backgroundColor = UIColor.clear
     }
     
     
